@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
+import { fetch } from 'superagent'
+import { createUser } from './servers.js'
 
-export default class LoginPage extends Component {
 
+export default class SignUpPage extends Component {
+    state = {
+        email: '',
+        password: '',
+        loading: false
+    }
 
 
     handleSubmit = async (e) => {
@@ -24,7 +31,9 @@ export default class LoginPage extends Component {
 
         this.props.history.push('/ToDosPage');
     }
+
     render() {
+
         return (
             <div >
                 <form onSubmit={this.handleSubmit}>
@@ -34,7 +43,7 @@ export default class LoginPage extends Component {
                     <label>
                         <input type="password" placeholder="password" onChange={(e) => this.setState({ password: e.target.value })}></input>
                     </label>
-                    <button>Sign In</button>
+                    <button>Sign Up</button>
                 </form>
 
             </div>
