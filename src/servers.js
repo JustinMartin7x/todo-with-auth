@@ -4,11 +4,11 @@ const URL = 'https://todo-list-justin.herokuapp.com'
 
 
 
-export function fetchTodos() {
+export async function fetchTodos() {
     const TOKEN = localStorage.getItem('TOKEN');
 
     try {
-        return request
+        return await request
             .get(`${URL}/api/todos`)
             .set('Authorization', TOKEN)
     } catch (e) {
@@ -18,12 +18,12 @@ export function fetchTodos() {
     }
 }
 
-export function createTodo(item) {
+export async function createTodo(item) {
 
     const TOKEN = localStorage.getItem('TOKEN');
 
     try {
-        return request
+        return await request
             .post(`${URL}/api/todos`, item)
             .set('Authorization', TOKEN)
     } catch (e) {
