@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchTodos, createTodo } from './servers.js'
+import { fetchTodos, createTodo, completeTask } from './fetchcalls.js'
 
 export default class ToDosPage extends Component {
     state = {
@@ -8,9 +8,7 @@ export default class ToDosPage extends Component {
         loading: false
     }
 
-
-
-    componentDidMount = async () => {
+    fetchAll = async () => {
         this.setState({
             loading: true
         })
@@ -19,33 +17,63 @@ export default class ToDosPage extends Component {
             todos: response.body,
             loaing: false
         })
-
     }
+
+    componentDidMount = async () => {
+        this.fetchAll()
+    }
+
     handleSubmit = async (e) => {
 
         e.preventDefault()
         const newItem = {
             todo: this.state.todo,
         }
+        this.setState({ loading: true })
         await createTodo(newItem)
-        await fetchTodos()
+        await this.fetchAll()
+        this.setState({ loading: false })
+
         console.log(this.state.todos)
     }
-    // handleCompleted = async () => {
-    //     const { token } = this.props
-    // }
+    handleCompleted = async (someId) => {
+        await completeTask(someId)
+        await this.fetchAll()
+
+    }
 
 
 
 
 
     render() {
+        const {
+            todos,
+            loading,
+        } = this.state
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <input placeholder="new todo" onChange={(e) => this.setState({ todo: e.target.value })}></input>
                     <button>Add</button>
                 </form>
+                {
+                    !loading
+                        ? 'LOADING!!!!!'
+                        : todos.map(todos => <div style={{
+                            textDecoration: todos.is_completed ? 'line-through' : 'none'
+                        }
+                        }>
+                            {todos.todo}
+                            {
+                                todos.is_completed ? '' : <button
+                                    onClick={() => this.handleCompleted(todos.id)}>
+                                    Complete
+                            </button>
+                            }
+                        </div>)
+                }
+
 
 
             </div >

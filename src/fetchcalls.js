@@ -58,3 +58,18 @@ export async function signInUser(info) {
         }
     }
 }
+export async function completeTask(id) {
+    const TOKEN = localStorage.getItem('TOKEN');
+    try {
+        return await request
+            .put(`${URL}/api/todos/${id}`)
+            .set('Authorization', TOKEN)
+            .send({
+                is_completed: true
+            })
+    } catch (e) {
+        throw {
+            error: e.message
+        }
+    }
+}
