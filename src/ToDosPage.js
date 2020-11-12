@@ -7,7 +7,6 @@ export default class ToDosPage extends Component {
         todo: '',
         loading: false
     }
-
     fetchAll = async () => {
         this.setState({
             loading: true
@@ -18,7 +17,6 @@ export default class ToDosPage extends Component {
             loaing: false
         })
     }
-
     componentDidMount = async () => {
         this.fetchAll()
     }
@@ -41,11 +39,6 @@ export default class ToDosPage extends Component {
         await this.fetchAll()
 
     }
-
-
-
-
-
     render() {
         const {
             todos,
