@@ -17,7 +17,7 @@ export default class ToDosPage extends Component {
             loaing: false
         })
     }
-    componentDidMount = async () => {
+    componentDidMount = () => {
         this.fetchAll()
     }
 
@@ -27,12 +27,8 @@ export default class ToDosPage extends Component {
         const newItem = {
             todo: this.state.todo,
         }
-        this.setState({ loading: true })
         await createTodo(newItem)
         await this.fetchAll()
-        this.setState({ loading: false })
-
-        console.log(this.state.todos)
     }
     handleCompleted = async (someId) => {
         await completeTask(someId)
