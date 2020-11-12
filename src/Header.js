@@ -14,7 +14,7 @@ export default class Header extends Component {
                 <div>
                     <Link to="/loginPage"><div>log in</div></Link>
                     <Link to="/signupPage"><div>sign up</div></Link>
-                    <button onClick={() => this.props.logout('')}>Logout</button>
+                    <Link to="/loginpage"> <button onClick={() => this.props.logout('')}>Logout</button> </Link>
                 </div>
             </>
         )

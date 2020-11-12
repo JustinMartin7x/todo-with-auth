@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
+import { signInUser } from './servers.js'
 
 export default class LoginPage extends Component {
+    state = {
+        email: '',
+        password: '',
+        loading: false
+    }
 
 
 
@@ -14,7 +20,7 @@ export default class LoginPage extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        const user = await createUser(info)
+        const user = await signInUser(info)
 
         this.setState({ loading: false })
 

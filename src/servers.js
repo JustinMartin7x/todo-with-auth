@@ -46,4 +46,15 @@ export async function createUser(user) {
     }
 
 }
-export async function signInUser()
+export async function signInUser(info) {
+    try {
+        const response = await request
+            .post(`${URL}/auth/signin`)
+            .send(info)
+        return response
+    } catch (e) {
+        throw {
+            error: e.message
+        }
+    }
+}
