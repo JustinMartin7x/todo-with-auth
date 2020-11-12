@@ -4,6 +4,7 @@ const URL = 'https://todo-list-justin.herokuapp.com'
 
 
 
+
 export async function fetchTodos() {
     const TOKEN = localStorage.getItem('TOKEN');
 
@@ -12,7 +13,7 @@ export async function fetchTodos() {
             .get(`${URL}/api/todos`)
             .set('Authorization', TOKEN)
     } catch (e) {
-        throw {
+        return {
             error: e.message
         }
     }
@@ -27,9 +28,9 @@ export async function createTodo(item) {
             .post(`${URL}/api/todos`, item)
             .set('Authorization', TOKEN)
     } catch (e) {
-        throw {
+        alert({
             error: e.message
-        }
+        })
     }
 }
 export async function createUser(user) {
@@ -40,9 +41,9 @@ export async function createUser(user) {
         console.log(response)
         return response
     } catch (e) {
-        throw {
+        alert({
             error: e.message
-        }
+        })
     }
 
 }
@@ -53,9 +54,9 @@ export async function signInUser(info) {
             .send(info)
         return response
     } catch (e) {
-        throw {
+        alert({
             error: e.message
-        }
+        })
     }
 }
 export async function completeTask(id) {
@@ -68,8 +69,8 @@ export async function completeTask(id) {
                 is_completed: true
             })
     } catch (e) {
-        throw {
+        console.log({
             error: e.message
-        }
+        })
     }
 }
