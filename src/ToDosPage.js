@@ -47,7 +47,7 @@ export default class ToDosPage extends Component {
                     <button>Add</button>
                 </form>
                 {
-                    !loading
+                    !!loading
                         ? 'LOADING!!!!!'
                         : todos.map(todos => <div style={{
                             textDecoration: todos.is_completed ? 'line-through' : 'none'
