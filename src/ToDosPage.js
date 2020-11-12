@@ -14,10 +14,10 @@ export default class ToDosPage extends Component {
         const response = await fetchTodos()
         this.setState({
             todos: response.body,
-            loaing: false
+            loading: false
         })
     }
-    componentDidMount = async () => {
+    componentDidMount = () => {
         this.fetchAll()
     }
 
@@ -27,12 +27,8 @@ export default class ToDosPage extends Component {
         const newItem = {
             todo: this.state.todo,
         }
-        this.setState({ loading: true })
         await createTodo(newItem)
         await this.fetchAll()
-        this.setState({ loading: false })
-
-        console.log(this.state.todos)
     }
     handleCompleted = async (someId) => {
         await completeTask(someId)
