@@ -14,7 +14,7 @@ export default class ToDosPage extends Component {
         const response = await fetchTodos()
         this.setState({
             todos: response.body,
-            loaing: false
+            loading: false
         })
     }
     componentDidMount = () => {
