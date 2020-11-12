@@ -17,8 +17,8 @@ export default class ToDosPage extends Component {
             loading: false
         })
     }
-    componentDidMount = () => {
-        this.fetchAll()
+    componentDidMount = async () => {
+        await this.fetchAll()
     }
 
     handleSubmit = async (e) => {
